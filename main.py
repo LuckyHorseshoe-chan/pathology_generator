@@ -18,24 +18,24 @@ from typing import Union
 
 optimizer = Adam(0.0002, 0.5)
 # load json and create model
-json_file = open('little_generator.json', 'r')
+json_file = open('models/little_generator.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 little_model = model_from_json(loaded_model_json, custom_objects={'InstanceNormalization':InstanceNormalization})
 # load weights into new model
-little_model.load_weights("little_generator_weights.hdf5")
+little_model.load_weights("models/little_generator_weights.hdf5")
  
 # evaluate loaded model on test data
 little_model.compile(loss='mse',
             optimizer=optimizer,
             metrics=['accuracy'])
 
-json_file = open('big_generator.json', 'r')
+json_file = open('models/big_generator.json', 'r')
 big_model_json = json_file.read()
 json_file.close()
 big_model = model_from_json(big_model_json, custom_objects={'InstanceNormalization':InstanceNormalization})
 # load weights into new model
-big_model.load_weights("big_generator_weights.hdf5")
+big_model.load_weights("models/big_generator_weights.hdf5")
  
 # evaluate loaded model on test data
 big_model.compile(loss='mse',
